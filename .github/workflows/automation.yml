@@ -1,0 +1,85 @@
+name: Automatic Translation Sync
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "0 6 * * *"
+
+permissions:
+  contents: write
+
+jobs:
+  sync-translations:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository 🛫
+        uses: actions/checkout@v4
+
+      - name: Create directories 📂
+        run: |
+          mkdir -p web
+          mkdir -p api
+
+      - name: Export Web translations 🌎
+        run: |
+          curl -X POST "https://translate.maneko.moe/v2/projects/2/export" \
+            -H "Content-Type: application/json" \
+            -H "X-API-Key: ${{ secrets.TOLGEE_KEY_WEB }}" \
+            --data '{
+              "format": "JSON",
+              "filterState": ["TRANSLATED","REVIEWED"],
+              "structureDelimiter": "",
+              "filterNamespace": [""],
+              "zip": true,
+              "supportArrays": false,
+              "messageFormat": "ICU",
+              "escapeHtml": false
+            }' \
+            --output web/translations.zip
+
+          if file web/translations.zip | grep -q "Zip archive"; then
+            unzip -o web/translations.zip -d web
+            rm web/translations.zip
+          else
+            echo "⚠️ Failed to get ZIP, response body:"
+            cat web/translations.zip
+            exit 1
+          fi
+
+      - name: Export API translations ⚙️
+        run: |
+          curl -X POST "https://translate.maneko.moe/v2/projects/3/export" \
+            -H "Content-Type: application/json" \
+            -H "X-API-Key: ${{ secrets.TOLGEE_KEY_API }}" \
+            --data '{
+              "format": "JSON",
+              "filterState": ["TRANSLATED","REVIEWED"],
+              "structureDelimiter": "",
+              "filterNamespace": [""],
+              "zip": true,
+              "supportArrays": false,
+              "messageFormat": "ICU",
+              "escapeHtml": false
+            }' \
+            --output api/translations.zip
+
+          if file api/translations.zip | grep -q "Zip archive"; then
+            unzip -o api/translations.zip -d api
+            rm api/translations.zip
+          else
+            echo "⚠️ Failed to get ZIP, response body:"
+            cat api/translations.zip
+            exit 1
+          fi
+
+      - name: Commit and push changes 🔗
+        env:
+          TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          git config user.name "GitHub Actions"
+          git config user.email "actions@github.com"
+          git remote set-url origin https://x-access-token:${TOKEN}@github.com/${{ github.repository }}
+          git add web api
+          git commit -m "chore: update translations" || echo "No changes to commit"
+          git push
