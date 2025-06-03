@@ -1,0 +1,9 @@
+{
+  "auth.invalid_credentials": "Няправільныя ўліковыя даныя",
+  "auth.sessions.failed_to_create": "Не ўдалося стварыць сеанс",
+  "auth.sessions.failed_to_get": "Немагчыма атрымаць сесію",
+  "auth.sessions.failed_to_touch": "Не ўдалося абнавіць сеанс",
+  "auth.user_exists": "Карыстальнік ужо існуе",
+  "auth.user_not_found": "Карыстальнік не знойдзен",
+  "users.not_found": "{value, plural, one {Карыстальнік не знойдзен} many {Карыстальнікі не знойдзены} other {}}"
+}
