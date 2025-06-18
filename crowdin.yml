@@ -7,7 +7,7 @@ base_path: .
 base_url: https://api.crowdin.com
 
 # File structure in Crowdin
-preserve_hierarchy: false
+preserve_hierarchy: true
 
 # Files configuration
 files:
