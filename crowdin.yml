@@ -13,9 +13,10 @@ preserve_hierarchy: false
 files:
   - source: web/en.json
     translation: web/%two_letters_code%.json
+    scheme: file-based
     type: json
 
   - source: desktop/en.json
     translation: desktop/%two_letters_code%.json
+    scheme: file-based
     type: json
-    scheme: file
