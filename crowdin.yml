@@ -11,10 +11,11 @@ preserve_hierarchy: false
 
 # Files configuration
 files:
-  - source: /web/en.json
-    translation: /web/%two_letters_code%.json
+  - source: web/en.json
+    translation: web/%two_letters_code%.json
     type: json
 
-  - source: /desktop/en.json
-    translation: /desktop/%two_letters_code%.json
+  - source: desktop/en.json
+    translation: desktop/%two_letters_code%.json
     type: json
+    scheme: file
