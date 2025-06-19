@@ -1,6 +1,4 @@
 {
-  "footer.legal.copyright": "Copyright",
-  "footer.legal.privacy_policy": "Privacy policy",
-  "footer.legal.terms_of_service": "Terms of service",
-  "footer.legal.title": "Legal"
+  "app.title": "Maneko",
+  "app.description": "a modern anime viewing service"
 }
