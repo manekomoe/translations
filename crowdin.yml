@@ -11,8 +11,8 @@ preserve_hierarchy: true
 
 # Files configuration
 files:
-  - source: /desktop/en/**/*.*
-    translation: /desktop/%two_letters_code%/%original_file_name%
+  - source: /desktop/en.json
+    translation: /desktop/%two_letters_code%.json
 
-  - source: /web/en/**/*.*
-    translation: /web/%two_letters_code%/%original_file_name%
+  - source: /web/en.json
+    translation: /web/%two_letters_code%.json
