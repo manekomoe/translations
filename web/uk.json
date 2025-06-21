@@ -1,8 +1,8 @@
 {
   "app.title": "Maneko",
-  "app.description": "a modern anime viewing service",
-  "footer.abuse": "For copyright issues, please contact:",
-  "footer.legal.title": "Legal",
-  "footer.legal.terms_of_service": "Terms of service",
-  "footer.legal.privacy_policy": "Privacy policy"
+  "app.description": "сучасний сервіс для перегляду аніме",
+  "footer.abuse": "З питань авторського права, будь ласка, звертайтесь:",
+  "footer.legal.title": "Правова інформація",
+  "footer.legal.terms_of_service": "Умови надання послуг",
+  "footer.legal.privacy_policy": "Політика конфіденційності"
 }
